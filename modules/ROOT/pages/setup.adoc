@@ -1,0 +1,164 @@
+== Setup the Development Environment
+
+=== Prepare the Software
+
+==== Target Platform
+
+This document is focused on *Ubuntu 24.04 x86_64* systems.
+
+You can use any of the following setups:
+
+* A PC with Ubuntu installed
+* A system container (e.g., Incus)
+* A virtual machine (e.g., QEMU, VirtualBox, VMware)
+* *WSL2* (see TIP)
+
+For Windows or macOS users, refer to link:https://docs.zephyrproject.org/latest/develop/getting_started/index.html[the official Zephyr documentation].
+
+TIP: According to the Zephyr documentation, WSL is currently not supported. However, we have confirmed that the procedures in this document can be executed by enabling USB device attached to WSL2 using the steps described below. +
+  - https://learn.microsoft.com/en-us/windows/wsl/connect-usb[Connect USB devices] +
+The following two USB devices need to be attached to WSL2: +
+  - USB Serial Converter A, USB Serial Converter B +
+  - CMSIS-DAP v2 Interface, USB Serial Device
+
+NOTE: We have confirmed that the `west flash` command takes longer to complete on WSL2 compared to native Linux. (65 KBytes writing: WSL2 - about 1 minute / Native Linux – about 20 seconds)
+
+==== Install Required Dependencies
+NOTE: This section is mostly the same as Zephyr official documentation.
+
+===== Update your system
+
+[source,  bash]
+----
+sudo apt update && sudo apt upgrade
+----
+
+===== Install dependencies
+
+[source,  bash]
+----
+sudo apt install --no-install-recommends git cmake ninja-build gperf \
+  ccache dfu-util device-tree-compiler wget \
+  python3-dev python3-pip python3-setuptools python3-tk python3-wheel xz-utils file \
+  make gcc gcc-multilib g++-multilib libsdl2-dev libmagic1
+----
+
+==== Get Zephyr and Python Requirements
+
+===== Create your working directory
+
+[source, bash]
+----
+mkdir -p ~/myproject && cd ~/myproject
+----
+
+===== Install the Python venv package
+
+[source, bash]
+----
+sudo apt install python3-venv
+----
+
+===== Create a new virtual environment
+
+[source, bash]
+----
+python3 -m venv ~/myproject/.venv
+----
+
+===== Activate the virtual environment
+
+[source, bash]
+----
+source ~/myproject/.venv/bin/activate
+----
+
+===== Install the west
+
+[source, bash]
+----
+pip install west
+----
+
+===== Clone the SC-OBC Module A1 sample repository using west
+
+[source, bash]
+----
+cd ~/myproject
+west init -m https://github.com/spacecubics/scobc-a1-sample
+west update
+west zephyr-export
+----
+
+===== Install the Python requirements
+
+[source, bash]
+----
+west packages pip --install
+----
+
+==== Install the Zephyr SDK
+
+[source, bash]
+----
+west sdk install
+----
+
+==== Install udev rules
+
+Install the udev rules, which allow you to flash most Zephyr boards as a regular user.
+
+[source, bash]
+----
+sudo cp ~/zephyr-sdk-[VERSION]/sysroots/x86_64-pokysdk-linux/usr/share/openocd/contrib/60-openocd.rules \
+        /etc/udev/rules.d
+sudo udevadm control --reload
+----
+
+==== Install the OpenOCD related package
+
+Install the packages required for flashing via *OpenOCD*.
+
+[source, bash]
+----
+sudo apt install libftdi1 libgpiod2 libhidapi-hidraw0 libcapstone4
+----
+
+==== Install the tio package
+
+Although there are several tools available for working with a serial console, this document uses *tio*.
+
+[source, bash]
+----
+sudo apt install tio
+----
+
+=== Connect the Hardware
+
+Before starting development, make sure you have the following components:
+
+
+* ✔️ SC-OBC Module A1
+* ✔️ SC-OBC Module A1 Development Board
+* ✔️ USB Cable
+** ✔️ Console Cable (TypeA - microB)
+** ✔️ OpenOCD Cable
+* ✔️ AC Adapter (5V/3.0A PL03B)
+
+Refer to _SC-OBC Module A1 Development Board Product Manual_ for detailed instructions on how to make the connection.
+
+NOTE: The OpenOCD cable should be connected to a device such as the *Raspberry Pi Debug Probe*. +
+Connect each signal line from the Raspberry Pi Debug Probe to the following connector: +
+  - UIO4_01: SWCLK (SC) +
+  - UIO4_02: SWDIO (SD) +
+  - Any GND: GND
+
+NOTE: This document does not require a connection between the *MPLAB PICkit* and the *Platform Cable USB II*.
+
+=== Check the DIP Switch status
+
+CAUTION: To use the Zephyr console, bit3 (TX) and bit4 (RX) of DIP Switch (_SW1_) must be turned ON. If they are currently OFF, please switch them ON.
+
+=== Power ON the SC-OBC Module A1 Development Board
+
+Once all connections and checks have been completed, switch ON the power switch (_SW2_) on the Development Board to apply power.
