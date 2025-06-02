@@ -266,7 +266,7 @@ The source code is shown below. Details will be explained separately.
 
 #include <zephyr/drivers/i2c.h>
 
-#define TMP175_I2C_ADDR (0x4F)
+#define TMP175_I2C_ADDR (0x4B)
 #define TMP175_TEMP_REG (0x00)
 
 int main(void)
@@ -331,7 +331,7 @@ Validate that I2C device is ready. If the I2C device is not properly initialized
 
 The APIs provided by the I2C driver are documented in the I2C interface. +
 In this example, it is necessary to read 2 bytes of temperature data from the sensor, so the `i2c_burst_read` API is used to perform a multi-byte read from the I2C device. +
-The second argument specifies the slave address of the I2C device. For the _TMP175_ temperature sensor used in this example, the slave address is set to `0x4F`. +
+The second argument specifies the slave address of the I2C device. For the _TMP175_ temperature sensor used in this example, the slave address is set to `0x4B`. +
 The third argument specifies the register address from which the temperature data will be read.
 This register address must be obtained from the _TMP175_ datasheet.
 For _TMP175_, the temperature register address is `0x00`.
