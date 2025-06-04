@@ -1,3 +1,5 @@
+:sectnums:
+
 = SC-OBC Module A1 Software Manual
 
 include::setup.adoc[]
