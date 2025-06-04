@@ -1,4 +1,4 @@
-== Setting Up the Development Environment for SC-OBC Module A1
+== Setup the Development Environment
 
 === Prepare the Software
 
