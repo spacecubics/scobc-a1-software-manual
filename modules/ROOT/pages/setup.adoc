@@ -18,11 +18,6 @@ For Windows or macOS users, refer to link:https://docs.zephyrproject.org/latest/
 
 ==== Install Required Dependencies
 
-[INFO]
-======
-This section is mostly the same as Zephyr official documentation.
-======
-
 ===== Update your system
 
 [source, bash]
