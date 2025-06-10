@@ -1,4 +1,4 @@
-== Try developing applications on SC-OBC module A1
+== Try developing applications on SC-OBC Module A1
 
 === Introduction
 
