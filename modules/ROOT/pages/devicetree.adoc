@@ -1,5 +1,8 @@
 == Device Tree
 
+Before introducing a sample application that uses a Zephyr driver, we believe it is helpful to first explain the Device Tree, as this will aid in understanding the source code more effectively.
+
+
 === What is the Device Tree?
 
 The *Device Tree* is a data structure originally developed as part of the Open Firmware specification (IEEE 1275), where it was used to describe the hardware layout of systems such as PowerPC-based workstations and servers.
