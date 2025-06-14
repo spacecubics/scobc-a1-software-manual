@@ -107,3 +107,12 @@ $ sudo cp ~/zephyr-sdk-[VERSION]/sysroots/x86_64-pokysdk-linux/usr/share/openocd
 $ sudo udevadm control --reload
 ----
 
+==== Install tio package
+
+Although there are several tools available for working with a serial console, this document uses _tio_.
+
+[source, bash]
+----
+$ sudo apt install tio
+----
+
