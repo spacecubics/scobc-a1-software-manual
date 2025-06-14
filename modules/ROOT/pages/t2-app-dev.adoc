@@ -2,10 +2,10 @@
 
 === Introduction
 
-This section explains how to develop applications using Zephyr's T2 topology. +
+This section explains how to develop applications using Zephyr's *T2 topology*. +
 Several sample applications are provided to help explain the source code structure, build process, and other development practices.
 
-=== What's T2 topology
+=== What is T2 topology
 
 Details of the T2 topology can be found in https://docs.zephyrproject.org/latest/develop/west/workspaces.html#t2-star-topology-application-is-the-manifest-repository[T2 topology], but it has the following characteristics:
 
@@ -13,28 +13,27 @@ Details of the T2 topology can be found in https://docs.zephyrproject.org/latest
  * Zephyr and other projects can be managed as sub modules
  * Zephyr drivers can be managed out-of-tree in a dedicated (custom) repository
 
-=== Example
+=== Hello World sample
 
-==== Hello World
+This section provides an example of building and running the simplest Hello World application within a T2 topology-based repository. +
+The sample application is available in https://github.com/spacecubics/scobc-a1-sample/tree/main/samples/hello_world[Hello World sample].
 
-This section provides an example of building and running the simplest _Hello World_ application within a T2 topology-based repository. +
-The sample application is available at the following repository:
+==== Explain the sample code
 
- * https://github.com/sasataku/scobc-a1-sample/sample/hello_world
-
-===== Explain the sample code
-
-====== Directory name
+===== Directory name
 
 The directory name and structure for the sample application can be chosen freely. +
 In this example, we use the directory name `sample/hello_world`.
 
-====== CMakefile.txt
+===== CMakefile.txt
 
 A `CMakeLists.txt` file must be placed directly under the application directory.
 
 [source, bash]
 ----
+# Copyright (c) 2025 Space Cubics Inc.
+# SPDX-License-Identifier: Apache-2.0
+
 cmake_minimum_required(VERSION 3.20.0)
 
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
@@ -45,27 +44,27 @@ target_sources(app PRIVATE src/main.c)
 
 Here, the parts that need to be modified for each application are explained.
 
- * _project_: Specify the desired project name
- * _target_sources_: Specify the source code file(s)
+ * *project*: Specify the desired project name
+ * *target_sources*: Specify the source code file(s)
 
-====== prj.conf
+===== prj.conf
 
-Additional _Kconfig_ parameters required for running the application can be specified. +
-For this _Hello World_ application, no additional parameters are required, so leaving it empty is fine.
+Additional *Kconfig* parameters required for running the application can be specified. +
+For this Hello World application, no additional parameters are required, so leaving it empty is fine.
 
 [source, bash]
 ----
 # nothing here
 ----
 
-====== Source code
+===== Source code
 
 The source code is equivalent to the sample code provided by Zephyr, but the displayed parameters have been modified. +
 In the Zephyr sample code, `CONFIG_BOARD_TARGET` was displayed, but in this sample, the board name (`CONFIG_BOARD`) and the revision (`CONFIG_BOARD_REVISION`) are displayed separately.
 [source, c]
 ----
 /*
- * Copyright (c) 2025 Space Cubics, Inc.
+ * Copyright (c) 2025 Space Cubics Inc.
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -80,7 +79,16 @@ int main(void)
 }
 ----
 
-TIP: The variable names starting with `CONFIG_` store parameters specified in Zephyr's _Kconfig_. To know all the _Kconfig_ parameters, you can refer to the `<build_directory>/zephyr/zephyr.dts` file.
+TIP: The variable names starting with `CONFIG_` store parameters specified in Zephyr's Kconfig. To know all the Kconfig parameters, you can refer to the `~/myproject/build/zephyr/zephyr.dts` file.
+
+==== Open console
+
+Connect the cable between your SC-OBC Module A1 and your PC, then open the console on terminal:
+
+[source,console]
+----
+tio /dev/ttyUSB0
+----
 
 ==== Build
 
@@ -88,12 +96,14 @@ Specify the sample application directory where `CMakeLists.txt` and `prj.conf` a
 
 [source, bash]
 ----
-$ west build -p always -b scobc_a1 --shield scobc_a1_devkit scobc-a1-sample/sample/hello_world
+cd ~/myproject
+python3 -m venv ~/zephyrproject/.venv
+west build -p always -b scobc_a1 --shield scobc_a1_dev scobc-a1-sample/samples/hello_world
 ----
 
 ==== Flash
 
-Then, as before, execute the flashing by running `west flash`.
+Next, we'll flash the SC-OBC Module A1:
 
 [source, bash]
 ----
@@ -102,40 +112,42 @@ $ west flash
 
 ==== Confirm
 
-The "Hello World" string will be displayed on the serial console along with the board name and revision.
+After power-cycle the SC-OBC Module A1, you should see the "Hello World" string on the console along with the board name and revision.
 
 [source, bash]
 ----
-*** Booting Zephyr OS build v4.1.0-4989-g0c876f7c1d5f ***
+*** Booting Zephyr OS build 60e8eb54f7ae ***
 Hello World! scobc_a1 Rev 2.0.0
 ----
 
-==== System Monitor
+If you want to exit the tio console, first press `Ctrl + t`, followed by `q`.
 
-This section provides an example of building and running the _System Monitor_ application within a T2 topology-based repository.
+=== System Monitor sample
 
-===== What's _System Monitor_
+This section provides an example of building and running the *System Monitor* application within a T2 topology-based repository.
 
-Details of the _System Monitor_ can be found in https://sc-obc-fpga-technical-reference-manual.readthedocs.io/ja/latest/#org8832978[System Monitor], but it has the following characteristics:
+==== What is the System Monitor
+
+Details of the System Monitor can be found in https://sc-obc-fpga-technical-reference-manual.readthedocs.io/ja/latest/#org393e82c[System Monitor], but it has the following characteristics:
 
 FPGA Watchdog::
 
-The system of the SC-OBC Module A1 is monitored by the _TRCH_ (Timing, Reset, Config & Health Controller), and the FPGA reports its internal status to the _TRCH_ via the watchdog signal.
+The system of the SC-OBC Module A1 is monitored by the *TRCH* (Timing, Reset, Config & Health Controller), and the FPGA reports its internal status to the TRCH via the watchdog signal.
 
-NOTE: the Monitoring by TRCH is disabled by default, so using the _FPGA Watchdog_ feature is not mandatory.
+NOTE: the Monitoring by TRCH is disabled by default, so using the FPGA Watchdog feature is not mandatory.
 
 SEM Controller::
 
-The _SEM (Soft Error Mitigation) Controller_ is a solution provided by _AMD_ for detecting and correcting errors that occur in the configuration memory of AMD FPGAs. +
-The SC-OBC Module A1 FPGA integrates this functionality into the system and provides access to the _SEM Controller_'s status through the System Monitor registers.
+The *SEM (Soft Error Mitigation) Controller* is a solution provided by _AMD_ for detecting and correcting errors that occur in the configuration memory of AMD FPGAs. +
+The SC-OBC Module A1 FPGA integrates this functionality into the system and provides access to the SEM Controller's status through the System Monitor registers.
 
 Board Health Monitor (BHM)::
 
-The _Board Health Monitor (BHM)_ is a feature that enables easy retrieval of data from sensors mounted on the SC-OBC Module A1. +
+The *Board Health Monitor (BHM)* is a feature that enables easy retrieval of data from sensors mounted on the SC-OBC Module A1. +
 The OBC module is equipped with two current and voltage monitors and three temperature sensors. +
-The _BHM_ allows automatic data acquisition from these sensors without requiring complex I2C operations in software.
+The BHM allows automatic data acquisition from these sensors without requiring complex *I2C* operations in software.
 
-===== _System Monitor_ driver
+===== System Monitor driver
 
 Currently, the following Zephyr driver APIs are provided for controlling the FPGA's System Monitor.
 
@@ -188,29 +200,28 @@ _SCOBC_A1_XADC_VCCBRAM_ +
 *--EAGAIN:* No updated sensor values
 |=======================
 
-These APIs are provided as an out-of-tree driver and are available in the following repository.
+These APIs are provided as an out-of-tree driver and are available in https://github.com/spacecubics/scobc-a1-sample/tree/main/drivers/misc/sc_fpga[System Monitor Driver].
 
- * https://github.com/sasataku/scobc-a1-sample/drivers/misc/sc_fpga
+===== System Monitor sample
 
-===== _System Monitor_ sample application
+The sample application is available in https://github.com/spacecubics/scobc-a1-sample/tree/main/samples/sysmon[System Monitor sample].
 
-The sample application is available at the following repository:
+==== Explain the sample code
 
- * https://github.com/sasataku/scobc-a1-sample/sample/hello_world
-
-===== Explain the sample code
-
-====== Directory name
+===== Directory name
 
 The directory name and structure for the sample application can be chosen freely. +
 In this example, we use the directory name `sample/sysmon`.
 
-====== CMakefile.txt
+===== CMakefile.txt
 
 A `CMakeLists.txt` file must be placed directly under the application directory.
 
 [source, bash]
 ----
+# Copyright (c) 2025 Space Cubics Inc.
+# SPDX-License-Identifier: Apache-2.0
+
 cmake_minimum_required(VERSION 3.20.0)
 
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
@@ -221,27 +232,28 @@ target_sources(app PRIVATE src/main.c)
 
 Here, the parts that need to be modified for each application are explained.
 
- * _project_: Specify the desired project name
- * _target_sources_: Specify the source code file(s)
+ * *project*: Specify the desired project name
+ * *target_sources*: Specify the source code file(s)
 
-====== prj.conf
+===== prj.conf
 
-Additional _Kconfig_ parameters required for running the application can be specified. +
-For this _Hello World_ application, no additional parameters are required, so leaving it empty is fine.
+Additional Kconfig parameters required for running the application can be specified. +
+In this sample, to display temperature data of type float using printf, it is necessary to enable `CONFIG_PICOLIBC_IO_FLOAT`. +
+For more information about `CONFIG_PICOLIBC_IO_FLOAT`, refer to https://docs.zephyrproject.org/latest/kconfig.html#CONFIG_PICOLIBC_IO_FLOAT[CONFIG_PICOLIBC_IO_FLOAT].
 
 [source, bash]
 ----
-# nothing here
+CONFIG_PICOLIBC_IO_FLOAT=y
 ----
 
-====== Source code
+===== Source code
 
 The source code is shown below. Details will be explained separately.
 
 [source, c]
 ----
 /*
- * Copyright (c) 2025 Space Cubics, Inc.
+ * Copyright (c) 2025 Space Cubics Inc.
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -254,7 +266,6 @@ int main(void)
 	int ret;
 	float temp;
 	int32_t bus;
-	float vcc;
 
 	ret = sc_bhm_enable();
 	if (ret < 0) {
@@ -268,10 +279,10 @@ int main(void)
 	while (true) {
 		ret = sc_bhm_get_obc_temp(SCOBC_A1_TEMP_1, &temp);
 		if (ret < 0) {
-			printf("Failed to get the on Board temperature 1: %d\n", ret);
+			printf("Failed to get the on Board Temperature 1: %d\n", ret);
 			goto end;
 		}
-		printf("On Board tempareture 1 : %.4f [deg]\n", (double)temp);
+		printf("On Board Tempareture 1 : %.4f [deg]\n", (double)temp);
 
 		ret = sc_bhm_get_obc_cv(SCOBC_A1_3V3_BUS, &bus);
 		if (ret < 0) {
@@ -290,7 +301,7 @@ end:
 }
 ----
 
-* Include _System Monitor_ driver header
+====== Include System Monitor driver header
 
 Include the header file for the _System Monitor_ driver.
 
@@ -299,9 +310,9 @@ Include the header file for the _System Monitor_ driver.
 #include "sc_sysmon.h"
 ----
 
-* Enable BHM
+====== Enable BHM
 
-Enable the _System Monitor_ by FPGA _BHM_. If a non-zero value is returned, sensor initialization has failed.
+Enable the System Monitor by FPGA _BHM_. If a non-zero value is returned, sensor initialization has failed.
 
 [source, c]
 ----
@@ -312,9 +323,9 @@ Enable the _System Monitor_ by FPGA _BHM_. If a non-zero value is returned, sens
 	}
 ----
 
-* Wait 1 seconds
+====== Wait 1 seconds
 
-The current _System Monitor_ driver API does not allow customization of the monitoring interval via BHM; + 
+The current System Monitor driver API does not allow customization of the monitoring interval via BHM; + 
 it is fixed at 1 second. Therefore, waits for 1 second until the first data collection is completed.
 
 [source, c]
@@ -322,7 +333,7 @@ it is fixed at 1 second. Therefore, waits for 1 second until the first data coll
 	k_sleep(K_SECONDS(1));
 ----
 
-* Get the on board temperature sensor value
+====== Get the on board temperature sensor value
 
 Get the temperature data from onboard temperature sensor 1 and display it on the console. +
 If a non-zero value is returned, it may indicate that the temperature sensor data has not been updated within the FPGA. +
@@ -338,7 +349,7 @@ If you'd like to get other values, try changing the _SCOBC_A1_TEMP_1_ to a diffe
 		printf("On Board tempareture 1 : %.4f [deg]\n", (double)temp);
 ----
 
-* Get the on board voltage sensor value
+====== Get the on board voltage sensor value
 
 Get the _3V3SYS_ BUS voltage value data from onboard voltage sensor and display it on the console. +
 If a non-zero value is returned, it may indicate that the temperature sensor data has not been updated within the FPGA. +
@@ -354,22 +365,33 @@ If you'd like to get other values, try changing the _SCOBC_A1_3V3_BUS_ to a diff
 		printf("3V3SYS Bus voltage     : %d [mv]\n", bus);
 ----
 
+==== Open console
+
+Connect the cable between your SC-OBC Module A1 and your PC, then open the console on terminal:
+
+[source,console]
+----
+tio /dev/ttyUSB0
+----
+
 ==== Build
 
 Specify the sample application directory where `CMakeLists.txt` and `prj.conf` are placed, and then build as shown below.
 
 [source, bash]
 ----
-$ west build -p always -b scobc_a1 --shield scobc_a1_devkit scobc-a1-sample/sample/sysmon
+cd ~/myproject
+python3 -m venv ~/zephyrproject/.venv
+west build -p always -b scobc_a1 --shield scobc_a1_dev scobc-a1-sample/samples/sysmon
 ----
 
 ==== Flash
 
-Then, as before, execute the flashing by running `west flash`.
+Next, we'll flash the SC-OBC Module A1:
 
 [source, bash]
 ----
-$ west flash
+west flash
 ----
 
 ==== Confirm
@@ -378,7 +400,7 @@ Confirm that the temperature from the on board temperature sensor and the _3V3SY
 
 [source, bash]
 ----
-*** Booting Zephyr OS build v4.1.0-4990-g8ce593be113f ***
+*** Booting Zephyr OS build 60e8eb54f7ae ***
 On Board Tempareture 1 : 28.5000 [deg]
 3V3SYS Bus voltage     : 3256 [mv]
 On Board Tempareture 1 : 28.5000 [deg]
@@ -386,3 +408,5 @@ On Board Tempareture 1 : 28.5000 [deg]
 On Board Tempareture 1 : 28.5000 [deg]
 3V3SYS Bus voltage     : 3256 [mv]
 ----
+
+If you want to exit the tio console, first press `Ctrl + t`, followed by `q`.
