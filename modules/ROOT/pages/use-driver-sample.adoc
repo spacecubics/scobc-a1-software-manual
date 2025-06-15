@@ -184,7 +184,7 @@ Toggle the GPIO pin. If the toggle fails, a non-zero value will be returned.
 
 Connect the cable between your SC-OBC Module A1 and your PC, then open the console on terminal:
 
-[source,console]
+[source, bash]
 ----
 tio /dev/ttyUSB0
 ----
@@ -385,7 +385,7 @@ For more details, please refer to the TMP175 datasheet.
 
 Connect the cable between your SC-OBC Module A1 and your PC, then open the console on terminal:
 
-[source,console]
+[source, bash]
 ----
 tio /dev/ttyUSB0
 ----

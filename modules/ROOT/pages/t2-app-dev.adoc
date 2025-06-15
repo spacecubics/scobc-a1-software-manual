@@ -85,7 +85,7 @@ TIP: The variable names starting with `CONFIG_` store parameters specified in Ze
 
 Connect the cable between your SC-OBC Module A1 and your PC, then open the console on terminal:
 
-[source,console]
+[source, bash]
 ----
 tio /dev/ttyUSB0
 ----
@@ -369,7 +369,7 @@ If you'd like to get other values, try changing the _SCOBC_A1_3V3_BUS_ to a diff
 
 Connect the cable between your SC-OBC Module A1 and your PC, then open the console on terminal:
 
-[source,console]
+[source, bash]
 ----
 tio /dev/ttyUSB0
 ----
