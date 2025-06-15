@@ -107,7 +107,7 @@ Next, we'll flash the SC-OBC Module A1:
 
 [source, bash]
 ----
-$ west flash
+west flash
 ----
 
 ==== Confirm
