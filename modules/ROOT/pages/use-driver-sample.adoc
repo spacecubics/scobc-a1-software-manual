@@ -189,6 +189,8 @@ Connect the cable between your SC-OBC Module A1 and your PC, then open the conso
 tio /dev/ttyUSB0
 ----
 
+CAUTION: To use the Zephyr console, bit3 (TX) and bit4 (RX) of DIP Switch (_SW1_) must be turned ON. If they are currently OFF, please switch them ON.
+
 ==== Build
 
 Specify the sample application directory where `CMakeLists.txt` and `prj.conf` are placed, and then build as shown below.
@@ -381,6 +383,10 @@ For more details, please refer to the TMP175 datasheet.
 	temp = (int8_t)data[0] + (float)data[1] * 0.0625f;
 ----
 
+=== Check the DIP Switch status
+
+CAUTION: To access the temperature sensor on the Development Board, bit5 (SCL) and bit6 (SDA) of DIP Switch (_SW1_) must be turned ON. If they are currently OFF, please switch them ON.
+
 ==== Open console
 
 Connect the cable between your SC-OBC Module A1 and your PC, then open the console on terminal:
@@ -389,6 +395,8 @@ Connect the cable between your SC-OBC Module A1 and your PC, then open the conso
 ----
 tio /dev/ttyUSB0
 ----
+
+CAUTION: To use the Zephyr console, bit3 (TX) and bit4 (RX) of DIP Switch (_SW1_) must be turned ON. If they are currently OFF, please switch them ON.
 
 ==== Build
 
@@ -419,5 +427,6 @@ After power-cycle the SC-OBC Module A1, you should see the temperature data retr
 *** Booting Zephyr OS build 60e8eb54f7ae ***
 Temperature: 31.5000 [deg]
 ----
+
 
 If you want to exit the tio console, first press `Ctrl + t`, followed by `q`.

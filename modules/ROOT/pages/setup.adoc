@@ -158,8 +158,8 @@ NOTE: This document does not require a connection between the *MPLAB PICkit* and
 
 === Check the DIP Switch status
 
-To use the Zephyr console, bit3 (TX) and bit4 (RX) of DIP Switch (SW1) must be turned ON. If they are currently OFF, please switch them ON.
+CAUTION: To use the Zephyr console, bit3 (TX) and bit4 (RX) of DIP Switch (_SW1_) must be turned ON. If they are currently OFF, please switch them ON.
 
 === Power ON the SC-OBC Module A1 Development Board
 
-Once all connections and checks have been completed, switch ON the power switch (SW2) on the Development Board to apply power.
+Once all connections and checks have been completed, switch ON the power switch (_SW2_) on the Development Board to apply power.
