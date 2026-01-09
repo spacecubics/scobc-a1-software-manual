@@ -383,7 +383,7 @@ For more details, please refer to the TMP175 datasheet.
 	temp = (int8_t)data[0] + (float)data[1] * 0.0625f;
 ----
 
-=== Check the DIP Switch status
+==== Check the DIP Switch status
 
 CAUTION: To access the temperature sensor on the Development Board, bit5 (SCL) and bit6 (SDA) of DIP Switch (_SW1_) must be turned ON. If they are currently OFF, please switch them ON.
 
