@@ -189,7 +189,7 @@ Connect the cable between your SC-OBC Module A1 and your PC, then open the conso
 tio /dev/ttyUSB0
 ----
 
-CAUTION: To use the Zephyr console, bit3 (TX) and bit4 (RX) of DIP Switch (_SW1_) must be turned ON. If they are currently OFF, please switch them ON.
+CAUTION: To use the Zephyr console, bit3 (RX) and bit4 (TX) of DIP Switch (_SW1_) must be turned ON. If they are currently OFF, please switch them ON.
 
 ==== Build
 
@@ -396,7 +396,7 @@ Connect the cable between your SC-OBC Module A1 and your PC, then open the conso
 tio /dev/ttyUSB0
 ----
 
-CAUTION: To use the Zephyr console, bit3 (TX) and bit4 (RX) of DIP Switch (_SW1_) must be turned ON. If they are currently OFF, please switch them ON.
+CAUTION: To use the Zephyr console, bit3 (RX) and bit4 (TX) of DIP Switch (_SW1_) must be turned ON. If they are currently OFF, please switch them ON.
 
 ==== Build
 
