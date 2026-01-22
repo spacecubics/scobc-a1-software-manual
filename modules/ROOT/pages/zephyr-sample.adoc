@@ -11,7 +11,7 @@ In this section, we assume you have already set up your development environment 
 === Blinky sample
 The first sample is *Blinky*. This application blinks an LED on your Development Board.
 
-CAUTION: For the *Blinky* sample, make sure that SW1[8] (LED control) is turned ON.
+CAUTION: For the *Blinky* sample, make sure that SW1[10] (LED control) is turned ON.
 If it is OFF, the LED will not blink.
 
 ==== Build
