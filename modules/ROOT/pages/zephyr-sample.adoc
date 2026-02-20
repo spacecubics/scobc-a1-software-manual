@@ -16,7 +16,7 @@ If it is OFF, the LED will not blink.
 
 ==== Build
 
-[source, bash]
+[source, console]
 ----
 cd ~/myproject
 python3 -m venv ~/zephyrproject/.venv
@@ -31,7 +31,7 @@ These steps match the *Build the Blinky Sample* section in the Zephyr documentat
 
 Next, we'll flash the SC-OBC Module A1:
 
-[source, bash]
+[source, console]
 ----
 west flash
 ----
@@ -46,7 +46,7 @@ Next is the ever-popular *Hello World* sample. Before running Hello World, we ne
 
 Connect the cable between your SC-OBC Module A1 and your PC, then open the console on terminal:
 
-[source, bash]
+[source, console]
 ----
 tio /dev/ttyUSB2
 ----
@@ -57,7 +57,7 @@ CAUTION: To use the Zephyr console, bit3 (RX) and bit4 (TX) of DIP Switch (_SW1_
 
 Then open the another terminal, and build the sample.
 
-[source, bash]
+[source, console]
 ----
 cd ~/myproject
 python3 -m venv ~/zephyrproject/.venv
@@ -68,7 +68,7 @@ west build -p always -b scobc_a1 --shield scobc_a1_dev zephyr/samples/hello_worl
 
 Next, we'll flash the SC-OBC Module A1:
 
-[source, bash]
+[source, console]
 ----
 west flash
 ----
