@@ -29,7 +29,7 @@ In this example, we use the directory name `sample/hello_world`.
 
 A `CMakeLists.txt` file must be placed directly under the application directory.
 
-[source, bash]
+[source, cmake]
 ----
 # Copyright (c) 2025 Space Cubics Inc.
 # SPDX-License-Identifier: Apache-2.0
@@ -52,7 +52,7 @@ Here, the parts that need to be modified for each application are explained.
 Additional *Kconfig* parameters required for running the application can be specified. +
 For this Hello World application, no additional parameters are required, so leaving it empty is fine.
 
-[source, bash]
+[source]
 ----
 # nothing here
 ----
@@ -85,7 +85,7 @@ TIP: The variable names starting with `CONFIG_` store parameters specified in Ze
 
 Connect the cable between your SC-OBC Module A1 and your PC, then open the console on terminal:
 
-[source, bash]
+[source, console]
 ----
 tio /dev/ttyUSB2
 ----
@@ -96,7 +96,7 @@ CAUTION: To use the Zephyr console, bit3 (RX) and bit4 (TX) of DIP Switch (_SW1_
 
 Specify the sample application directory where `CMakeLists.txt` and `prj.conf` are placed, and then build as shown below.
 
-[source, bash]
+[source, console]
 ----
 cd ~/myproject
 python3 -m venv ~/zephyrproject/.venv
@@ -107,7 +107,7 @@ west build -p always -b scobc_a1 --shield scobc_a1_dev scobc-a1-sample/samples/h
 
 Next, we'll flash the SC-OBC Module A1:
 
-[source, bash]
+[source, console]
 ----
 west flash
 ----
@@ -116,7 +116,7 @@ west flash
 
 After power-cycle the SC-OBC Module A1, you should see the "Hello World" string on the console along with the board name and revision.
 
-[source, bash]
+[source, console]
 ----
 *** Booting Zephyr OS build 60e8eb54f7ae ***
 Hello World! scobc_a1 Rev 2.0.0
@@ -219,7 +219,7 @@ In this example, we use the directory name `sample/sysmon`.
 
 A `CMakeLists.txt` file must be placed directly under the application directory.
 
-[source, bash]
+[source, cmake]
 ----
 # Copyright (c) 2025 Space Cubics Inc.
 # SPDX-License-Identifier: Apache-2.0
@@ -243,7 +243,7 @@ Additional Kconfig parameters required for running the application can be specif
 In this sample, to display temperature data of type float using printf, it is necessary to enable `CONFIG_PICOLIBC_IO_FLOAT`. +
 For more information about `CONFIG_PICOLIBC_IO_FLOAT`, refer to https://docs.zephyrproject.org/latest/kconfig.html#CONFIG_PICOLIBC_IO_FLOAT[CONFIG_PICOLIBC_IO_FLOAT].
 
-[source, bash]
+[source]
 ----
 CONFIG_PICOLIBC_IO_FLOAT=y
 ----
@@ -371,7 +371,7 @@ If you'd like to get other values, try changing the _SCOBC_A1_3V3_BUS_ to a diff
 
 Connect the cable between your SC-OBC Module A1 and your PC, then open the console on terminal:
 
-[source, bash]
+[source, console]
 ----
 tio /dev/ttyUSB2
 ----
@@ -382,7 +382,7 @@ CAUTION: To use the Zephyr console, bit3 (RX) and bit4 (TX) of DIP Switch (_SW1_
 
 Specify the sample application directory where `CMakeLists.txt` and `prj.conf` are placed, and then build as shown below.
 
-[source, bash]
+[source, console]
 ----
 cd ~/myproject
 python3 -m venv ~/zephyrproject/.venv
@@ -393,7 +393,7 @@ west build -p always -b scobc_a1 --shield scobc_a1_dev scobc-a1-sample/samples/s
 
 Next, we'll flash the SC-OBC Module A1:
 
-[source, bash]
+[source, console]
 ----
 west flash
 ----
@@ -402,7 +402,7 @@ west flash
 
 Confirm that the temperature from the on board temperature sensor and the _3V3SYS_ bus voltage are displayed on the console every second.
 
-[source, bash]
+[source, console]
 ----
 *** Booting Zephyr OS build 60e8eb54f7ae ***
 On Board Tempareture 1 : 28.5000 [deg]
