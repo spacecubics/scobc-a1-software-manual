@@ -11,15 +11,26 @@ You can use any of the following setups:
 * A PC with Ubuntu installed
 * A system container (e.g., Incus)
 * A virtual machine (e.g., QEMU, VirtualBox, VMware)
-* *WSL2* (see TIP)
+* Windows Subsystem for Linux (WSL)
 
 For Windows or macOS users, refer to link:https://docs.zephyrproject.org/latest/develop/getting_started/index.html[the official Zephyr documentation].
 
-TIP: According to the Zephyr documentation, WSL is currently not supported. However, we have confirmed that the procedures in this document can be executed by enabling USB device attached to WSL2 using the steps described below. +
-  - https://learn.microsoft.com/en-us/windows/wsl/connect-usb[Connect USB devices] +
-The following two USB devices need to be attached to WSL2: +
-  - USB Serial Converter A, USB Serial Converter B +
-  - CMSIS-DAP v2 Interface, USB Serial Device
+:zephyr-win-install: https://docs.zephyrproject.org/latest/develop/getting_started/installation_win.html
+:wsl-usb-connect: https://learn.microsoft.com/en-us/windows/wsl/connect-usb
+
+[TIP]
+====
+For WSL2 users, refer to {zephyr-win-install}[the upstream Zephyr
+installation guide]. If you need to access USB devices from WSL2
+(for flashing/debugging), see {wsl-usb-connect}[Microsoft’s USB
+connection guide].
+
+The following two USB devices need to be attached to WSL2:
+
+* USB Serial Converter A, USB Serial Converter B
+* CMSIS-DAP v2 Interface, USB Serial Device
+====
+
 
 NOTE: We have confirmed that the `west flash` command takes longer to complete on WSL2 compared to native Linux. (65 KBytes writing: WSL2 - about 1 minute / Native Linux – about 20 seconds)
 
