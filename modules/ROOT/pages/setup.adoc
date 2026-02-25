@@ -11,17 +11,21 @@ You can use any of the following setups:
 * A PC with Ubuntu installed
 * A system container (e.g., Incus)
 * A virtual machine (e.g., QEMU, VirtualBox, VMware)
-* *WSL2* (see TIP)
+* Windows Subsystem for Linux (WSL2) (see TIP)
 
-For Windows or macOS users, refer to link:https://docs.zephyrproject.org/latest/develop/getting_started/index.html[the official Zephyr documentation].
+:zephyr-getting-started: https://docs.zephyrproject.org/latest/develop/getting_started/index.html
 
-TIP: According to the Zephyr documentation, WSL is currently not supported. However, we have confirmed that the procedures in this document can be executed by enabling USB device attached to WSL2 using the steps described below. +
-  - https://learn.microsoft.com/en-us/windows/wsl/connect-usb[Connect USB devices] +
-The following two USB devices need to be attached to WSL2: +
-  - USB Serial Converter A, USB Serial Converter B +
-  - CMSIS-DAP v2 Interface, USB Serial Device
+For Windows or macOS users, refer to {zephyr-getting-started}[the upstream Zephyr Getting Started Guide].
 
-NOTE: We have confirmed that the `west flash` command takes longer to complete on WSL2 compared to native Linux. (65 KBytes writing: WSL2 - about 1 minute / Native Linux – about 20 seconds)
+:zephyr-install-dependencies: https://docs.zephyrproject.org/latest/develop/getting_started/index.html#install-dependencies
+
+[TIP]
+====
+According to {zephyr-install-dependencies}[the Install dependencies section on the upstream Zephyr Getting Started Guide],
+firmware flashing from WSL is not supported. However, for the SC-OBC Module A1 Development Board,
+we have confirmed that flashing is possible on WSL2. Detailed instructions for WSL2 user are provided
+in the <<Connect the Hardware>> section.
+====
 
 ==== Install Required Dependencies
 NOTE: This section is mostly the same as Zephyr official documentation.
@@ -133,27 +137,57 @@ Although there are several tools available for working with a serial console, th
 sudo apt install tio
 ----
 
+[id="connect-hardware"]
 === Connect the Hardware
 
 Before starting development, make sure you have the following components:
 
-
 * ✔️ SC-OBC Module A1
 * ✔️ SC-OBC Module A1 Development Board
-* ✔️ USB Cable
-** ✔️ Console Cable (TypeA - microB)
-** ✔️ OpenOCD Cable
+* ✔️ USB Micro-B Cable
 * ✔️ AC Adapter (5V/3.0A PL03B)
 
 Refer to _SC-OBC Module A1 Development Board Product Manual_ for detailed instructions on how to make the connection.
 
-NOTE: The OpenOCD cable should be connected to a device such as the *Raspberry Pi Debug Probe*. +
-Connect each signal line from the Raspberry Pi Debug Probe to the following connector: +
-  - UIO4_01: SWCLK (SC) +
-  - UIO4_02: SWDIO (SD) +
-  - Any GND: GND
-
 NOTE: This document does not require a connection between the *MPLAB PICkit* and the *Platform Cable USB II*.
+
+:wsl-usb-connect: https://learn.microsoft.com/en-us/windows/wsl/connect-usb
+
+==== For WSL2 User
+CON2 on the SC-OBC Module A1 Development Board is the USB Micro-B DEBUG interface and is connected
+to the onboard FT4232H USB interface. It provides FPGA JTAG, CPU JTAG, FPGA UART, and TRCH UART. +
+
+When CON2 is connected to your Windows PC, you need to attach it to WSL2 according to
+{wsl-usb-connect}[the Microsoft USB connection guide]. +
+
+To attach the device to WSL2, run `usbipd list` on Windows and identify the FTDI multi-port USB
+device for CON2 (VID:PID 0403:6011). You need the `BUSID` from this output for the `usbipd bind` and
+`usbipd attach` command. The device name may be truncated in the DEVICE column, but the VID:PID
+(0403:6011) is sufficient to identify it. +
+
+Example (`BUSID` may differ on your system): +
+
+[source, console]
+----
+PS C:\Users\user> usbipd list
+Connected:
+BUSID  VID:PID    DEVICE                                                        STATE
+...
+9-1    0403:6011  USB Serial Converter A, USB Serial Converter B, USB Seria...  Not shared
+----
+
+Attach the device to WSL2 using the `BUSID` shown by `usbipd list`: +
+
+[source, console]
+----
+usbipd bind --busid 9-1
+usbipd attach --wsl --busid 9-1
+----
+
+After attaching, the serial ports appear in WSL2 as `/dev/ttyUSB*`.
+
+NOTE: We have confirmed that the `west flash` command takes longer to complete on WSL2 compared
+to native Linux. (65 KBytes writing: WSL2 - about 1 minute / Native Linux – about 20 seconds)
 
 === Check the DIP Switch status
 
