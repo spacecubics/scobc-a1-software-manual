@@ -162,9 +162,8 @@ CON2 on the SC-OBC Module A1 Development Board is the USB Micro-B
 DEBUG interface and is connected to the onboard FT4232H USB
 interface. It provides FPGA JTAG, CPU JTAG, FPGA UART, and TRCH UART.
 
-When CON2 is connected to your Windows PC, you need to attach it to
-WSL2 according to {wsl-usb-connect}[the Microsoft USB connection
-guide].
+Use a USB cable to connect CON2 to your Windows PC, then attach it to
+WSL2 using {wsl-usb-connect}[Microsoft’s USB connection guide].
 
 To attach the device to WSL2, run `usbipd list` on Windows and
 identify the FTDI multi-port USB device for CON2 (VID:PID
