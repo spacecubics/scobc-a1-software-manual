@@ -98,7 +98,7 @@ west packages pip --install
 ----
 
 ==== Install the Zephyr SDK
-
+
 [source, console]
 ----
 west sdk install
