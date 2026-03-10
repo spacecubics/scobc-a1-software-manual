@@ -1,3 +1,7 @@
+:sc_doc_base_url: https://spacecubics.github.io/sc-docs/
+:scobc_a1_product_manual_url: {sc_doc_base_url}scobc-a1-dev-product-manual/latest/
+:scobc_a1_dev_schematic_file_url: _attachments/SC-MPN-0056B_Dev_Board_Schematic_Rev1.pdf
+:scobc_a1_dev_schematic_url: {scobc_a1_product_manual_url}{scobc_a1_dev_schematic_file_url}
 == Try applications development using Zephyr Driver
 
 === Introduction
@@ -67,7 +71,7 @@ int main(void)
 {
 	int ret;
 	const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(DT_ALIAS(led0), gpios);
-	bool led_state = true;
+	int led_state = 0;
 
 	if (!gpio_is_ready_dt(&led)) {
 		printf("GPIO device is not ready\n");
@@ -88,7 +92,11 @@ int main(void)
 			goto end;
 		}
 
-		led_state = !led_state;
+		led_state = gpio_pin_get_dt(&led);
+		if (led_state < 0) {
+			printf("Failed to read GPIO state (%d)\n", led_state);
+			goto end;
+		}
 		printf("LED state: %s\n", led_state ? "ON" : "OFF");
 		k_sleep(K_SECONDS(1));
 	}
@@ -132,7 +140,7 @@ Additionally, an `led0` is assigned using the alias, which is used by Zephyr's b
 	leds {
 		compatible = "gpio-leds";
 		user_led_0: led_0 {
-			gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
 		};
 	};
 ----
@@ -143,6 +151,36 @@ Therefore, in this example, the GPIO device structure is obtained using `GPIO_DT
 ----
 	const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(DT_ALIAS(led0), gpios);
 ----
+
+====== About GPIO_ACTIVE_HIGH
+
+In the DTS overlay, the user LED is defined as:
+
+[source, dts]
+----
+gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
+----
+
+On the Development Board, the user LED is driven through an N-channel MOSFET.
+
+When the GPIO pin drives the MOSFET gate HIGH, the MOSFET turns ON and current flows through the 
+LED, causing the LED to light up.
+
+Electrically, this means:
+
+* GPIO = 1 (HIGH) → LED ON
+* GPIO = 0 (LOW)  → LED OFF
+
+Therefore, the LED is considered **active when the signal is HIGH**, which is why 
+`GPIO_ACTIVE_HIGH` is used in the Device Tree configuration.
+
+The LED driving circuit can be found in the Development Board schematic 
+(see the LED control circuit in the schematic document):
+
+* {scobc_a1_dev_schematic_url}[SC-MPN-0056B_Dev_Board_Schematic_Rev1.pdf]
+
+This configuration allows Zephyr to interpret the GPIO value correctly, so that a logical `1` 
+corresponds to the LED being ON and `0` corresponds to the LED being OFF.
 
 ====== Validate that GPIO port is ready
 
@@ -181,6 +219,22 @@ Toggle the GPIO pin. If the toggle fails, a non-zero value will be returned.
 		printf("Failed to toggle a GPIO pin (%d)\n", ret);
 		goto end;
 	}
+----
+
+====== Read GPIO state
+
+In this sample, the LED state is read back from the GPIO after toggling it.
+
+`gpio_pin_get_dt` is used to read the logical level of the GPIO pin. 
+If the read operation fails, a negative value is returned.
+
+[source, c]
+----
+led_state = gpio_pin_get_dt(&led);
+if (led_state < 0) {
+    printf("Failed to read GPIO state (%d)\n", led_state);
+    goto end;
+}
 ----
 
 ==== Open console
