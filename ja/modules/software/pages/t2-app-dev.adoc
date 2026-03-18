@@ -314,7 +314,7 @@ Include the header file for the _System Monitor_ driver.
 
 ===== Enable BHM
 
-Enable the System Monitor by FPGA _BHM_. If a non-zero value is returned, sensor initialization has failed.
+Enable the System Monitor by FPGA _BHM_. If a negative value is returned, sensor initialization has failed.
 
 [source, c]
 ----
@@ -338,7 +338,7 @@ it is fixed at 1 second. Therefore, waits for 1 second until the first data coll
 ===== Get the on board temperature sensor value
 
 Get the temperature data from onboard temperature sensor 1 and display it on the console. +
-If a non-zero value is returned, it may indicate that the temperature sensor data has not been updated within the FPGA. +
+If a negative value is returned, it may indicate that the temperature sensor data has not been updated within the FPGA. +
 If you'd like to get other values, try changing the _SCOBC_A1_TEMP_1_ to a different parameter of your choice, as referenced in <<anchor-1,Table 1. System Monitor Driver API List>>
 
 [source, c]
@@ -354,7 +354,7 @@ If you'd like to get other values, try changing the _SCOBC_A1_TEMP_1_ to a diffe
 ===== Get the on board voltage sensor value
 
 Get the _3V3SYS_ BUS voltage value data from onboard voltage sensor and display it on the console. +
-If a non-zero value is returned, it may indicate that the voltage sensor data has not been updated within the FPGA. +
+If a negative value is returned, it may indicate that the voltage sensor data has not been updated within the FPGA. +
 If you'd like to get other values, try changing the _SCOBC_A1_3V3_BUS_ to a different parameter of your choice, as referenced in <<anchor-1,Table 1. System Monitor Driver API List>>
 
 [source, c]

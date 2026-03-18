@@ -197,7 +197,7 @@ Validate that GPIO port is ready. If the GPIO device is not properly initialized
 
 ===== Configure a GPIO pin
 
-The GPIO is configured to its initial state as `OUTPUT_ACTIVE`. If the configuration fails, a non-zero value will be returned.
+The GPIO is configured to its initial state as `OUTPUT_ACTIVE`. If the configuration fails, a negative value will be returned.
 
 [source, c]
 ----
@@ -210,7 +210,7 @@ The GPIO is configured to its initial state as `OUTPUT_ACTIVE`. If the configura
 
 ===== Toggle a GPIO pin
 
-Toggle the GPIO pin. If the toggle fails, a non-zero value will be returned.
+Toggle the GPIO pin. If the toggle fails, a negative value will be returned.
 
 [source, c]
 ----
