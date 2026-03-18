@@ -357,7 +357,7 @@ int main(void)
 
 	if (!device_is_ready(i2c)) {
 		printf("I2C device is not ready\n");
-		ret = -ENODEV;;
+		ret = -ENODEV;
 		goto end;
 	}
 
@@ -410,7 +410,7 @@ Validate that I2C device is ready. If the I2C device is not properly initialized
 ----
 	if (!device_is_ready(i2c)) {
 		printf("I2C device is not ready\n");
-		ret = -ENODEV;;
+		ret = -ENODEV;
 		goto end;
 	}
 ----
