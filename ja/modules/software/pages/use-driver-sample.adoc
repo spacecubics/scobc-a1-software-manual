@@ -270,7 +270,7 @@ west flash
 
 === Confirm
 
-After power-cycle the SC-OBC Module A1, you should see that the _LED11_ will blink on and off every second, and the LED state will be displayed on the console.
+After power-cycling the SC-OBC Module A1, you should see that the _LED11_ will blink on and off every second, and the LED state will be displayed on the console.
 
 [source, console]
 ----
@@ -477,7 +477,7 @@ west flash
 
 === Confirm
 
-After power-cycle the SC-OBC Module A1, you should see the temperature data retrieved from the sensor is displayed on the serial console.
+After power-cycling the SC-OBC Module A1, you should see the temperature data retrieved from the sensor is displayed on the serial console.
 
 [source, console]
 ----
