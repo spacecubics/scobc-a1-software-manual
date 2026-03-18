@@ -1,0 +1,6 @@
+.Software
+* xref:setup.adoc[]
+* xref:zephyr-sample.adoc[]
+* xref:t2-app-dev.adoc[]
+* xref:devicetree.adoc[]
+* xref:use-driver-sample.adoc[]
