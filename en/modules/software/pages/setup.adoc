@@ -1,8 +1,8 @@
-== Setup the Development Environment
+= Setup the Development Environment
 
-=== Prepare the Software
+== Prepare the Software
 
-==== Target Platform
+=== Target Platform
 
 This document is focused on *Ubuntu 24.04 x86_64* systems.
 
@@ -30,17 +30,17 @@ WSL. Detailed instructions for WSL user are provided in the
 <<Connect the Hardware>> section.
 ====
 
-==== Install Required Dependencies
+=== Install Required Dependencies
 NOTE: This section is mostly the same as Zephyr official documentation.
 
-===== Update your system
+==== Update your system
 
 [source,  console]
 ----
 sudo apt update && sudo apt upgrade
 ----
 
-===== Install dependencies
+==== Install dependencies
 
 [source,  console]
 ----
@@ -50,44 +50,44 @@ sudo apt install --no-install-recommends git cmake ninja-build gperf \
   make gcc gcc-multilib g++-multilib libsdl2-dev libmagic1
 ----
 
-==== Get Zephyr and Python Requirements
+=== Get Zephyr and Python Requirements
 
-===== Create your working directory
+==== Create your working directory
 
 [source, console]
 ----
 mkdir -p ~/myproject && cd ~/myproject
 ----
 
-===== Install the Python venv package
+==== Install the Python venv package
 
 [source, console]
 ----
 sudo apt install python3-venv
 ----
 
-===== Create a new virtual environment
+==== Create a new virtual environment
 
 [source, console]
 ----
 python3 -m venv ~/myproject/.venv
 ----
 
-===== Activate the virtual environment
+==== Activate the virtual environment
 
 [source, console]
 ----
 source ~/myproject/.venv/bin/activate
 ----
 
-===== Install the west
+==== Install the west
 
 [source, console]
 ----
 pip install west
 ----
 
-===== Clone the SC-OBC Module A1 sample repository using west
+==== Clone the SC-OBC Module A1 sample repository using west
 
 [source, console]
 ----
@@ -97,21 +97,21 @@ west update
 west zephyr-export
 ----
 
-===== Install the Python requirements
+==== Install the Python requirements
 
 [source, console]
 ----
 west packages pip --install
 ----
 
-==== Install the Zephyr SDK
+=== Install the Zephyr SDK
 
 [source, console]
 ----
 west sdk install
 ----
 
-==== Install udev rules
+=== Install udev rules
 
 Install the udev rules, which allow you to flash most Zephyr boards as a regular user.
 
@@ -122,7 +122,7 @@ sudo cp ~/zephyr-sdk-[VERSION]/sysroots/x86_64-pokysdk-linux/usr/share/openocd/c
 sudo udevadm control --reload
 ----
 
-==== Install the OpenOCD related package
+=== Install the OpenOCD related package
 
 Install the packages required for flashing via *OpenOCD*.
 
@@ -131,7 +131,7 @@ Install the packages required for flashing via *OpenOCD*.
 sudo apt install libftdi1 libgpiod2 libhidapi-hidraw0 libcapstone4
 ----
 
-==== Install the tio package
+=== Install the tio package
 
 Although there are several tools available for working with a serial console, this document uses *tio*.
 
@@ -141,7 +141,7 @@ sudo apt install tio
 ----
 
 [id="connect-hardware"]
-=== Connect the Hardware
+== Connect the Hardware
 
 Before starting development, make sure you have the following components:
 
@@ -157,7 +157,7 @@ NOTE: This document does not require a connection between the *MPLAB PICkit* and
 
 :wsl-usb-connect: https://learn.microsoft.com/en-us/windows/wsl/connect-usb
 
-==== For WSL User
+=== For WSL User
 CON2 on the SC-OBC Module A1 Development Board is the USB Micro-B
 DEBUG interface and is connected to the onboard FT4232H USB
 interface. It provides FPGA JTAG, CPU JTAG, FPGA UART, and TRCH UART.
@@ -196,10 +196,10 @@ After attaching, the serial ports appear in WSL as `/dev/ttyUSB*`.
 NOTE: We have confirmed that the `west flash` command takes longer to complete on WSL compared
 to native Linux. (65 KBytes writing: WSL - about 1 minute / Native Linux – about 20 seconds)
 
-=== Check the DIP Switch status
+== Check the DIP Switch status
 
 CAUTION: To use the Zephyr console, bit3 (RX) and bit4 (TX) of DIP Switch (_SW1_) must be turned ON. If they are currently OFF, please switch them ON.
 
-=== Power ON the SC-OBC Module A1 Development Board
+== Power ON the SC-OBC Module A1 Development Board
 
 Once all connections and checks have been completed, switch ON the power switch (_SW2_) on the Development Board to apply power.
