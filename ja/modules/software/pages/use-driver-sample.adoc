@@ -19,7 +19,7 @@ The sample application is available in https://github.com/spacecubics/scobc-a1-s
 ==== Directory Name
 
 The directory name and structure for the sample application can be chosen freely. +
-In this example, we use the directory name `sample/blinky`.
+In this example, we use the directory name `samples/blinky`.
 
 ==== CMakefile.txt
 
@@ -293,7 +293,7 @@ The sample application is available in https://github.com/spacecubics/scobc-a1-s
 ==== Directory Name
 
 The directory name and structure for the sample application can be chosen freely. +
-In this example, we use the directory name `sample/i2c`.
+In this example, we use the directory name `samples/i2c`.
 
 ==== CMakefile.txt
 
