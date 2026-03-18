@@ -10,7 +10,7 @@ Several sample applications are provided to help explain the source code structu
 Details of the T2 topology can be found in https://docs.zephyrproject.org/latest/develop/west/workspaces.html#t2-star-topology-application-is-the-manifest-repository[T2 topology], but it has the following characteristics:
 
  * Applications can be managed in a dedicated (custom) repository
- * Zephyr and other projects can be managed as sub modules
+ * Zephyr and other projects can be managed as submodules
  * Zephyr drivers can be managed out-of-tree in a dedicated (custom) repository
 
 == Hello World sample
@@ -114,7 +114,7 @@ west flash
 
 === Confirm
 
-After power-cycle the SC-OBC Module A1, you should see the "Hello World" string on the console along with the board name and revision.
+After power-cycling the SC-OBC Module A1, you should see the "Hello World" string on the console along with the board name and revision.
 
 [source, console]
 ----
@@ -136,7 +136,7 @@ FPGA Watchdog::
 
 The system of the SC-OBC Module A1 is monitored by the *TRCH* (Timing, Reset, Config & Health Controller), and the FPGA reports its internal status to the TRCH via the watchdog signal.
 
-NOTE: the Monitoring by TRCH is disabled by default, so using the FPGA Watchdog feature is not mandatory.
+NOTE: The monitoring by TRCH is disabled by default, so using the FPGA Watchdog feature is not mandatory.
 
 SEM Controller::
 
@@ -161,7 +161,7 @@ Currently, the following Zephyr driver APIs are provided for controlling the FPG
 |FPGA Watchdog|sc_kick_wdt_timer|Toggle the FPGA Watch Dog Timer||
 |SEM Controller|sc_sem_get_error_count|Get the SEM error count||Current SEM error count
 |Board Health Monitor (BHM)|sc_bhm_enable|Enable the monitoring by BHM +
-*NOTE:* Currently monitoring interval is fixed by 1 seconds||*0:* Success +
+*NOTE:* Currently monitoring interval is fixed by 1 second||*0:* Success +
 *-ETIMEDOUT:* Timeout for sensor device initializing
 ||sc_bhm_disable|Disable the monitoring by BHM||*0:* Success
 ||sc_bhm_get_obc_temp|Get the on board temperature sensor value|*pos:* Position for sensor device +
@@ -284,7 +284,7 @@ int main(void)
 			printf("Failed to get the on Board Temperature 1: %d\n", ret);
 			goto end;
 		}
-		printf("On Board Tempareture 1 : %.4f [deg]\n", (double)temp);
+		printf("On Board Temperature 1 : %.4f [deg]\n", (double)temp);
 
 		ret = sc_bhm_get_obc_cv(SCOBC_A1_3V3_BUS, &bus);
 		if (ret < 0) {
@@ -325,7 +325,7 @@ Enable the System Monitor by FPGA _BHM_. If a non-zero value is returned, sensor
 	}
 ----
 
-===== Wait 1 seconds
+===== Wait 1 second
 
 The current System Monitor driver API does not allow customization of the monitoring interval via BHM; +
 it is fixed at 1 second. Therefore, waits for 1 second until the first data collection is completed.
@@ -348,7 +348,7 @@ If you'd like to get other values, try changing the _SCOBC_A1_TEMP_1_ to a diffe
 			printf("Failed to get the on Board temperature 1: %d\n", ret);
 			goto end;
 		}
-		printf("On Board tempareture 1 : %.4f [deg]\n", (double)temp);
+		printf("On Board Temperature 1 : %.4f [deg]\n", (double)temp);
 ----
 
 ===== Get the on board voltage sensor value
@@ -405,11 +405,11 @@ Confirm that the temperature from the on board temperature sensor and the _3V3SY
 [source, console]
 ----
 *** Booting Zephyr OS build 60e8eb54f7ae ***
-On Board Tempareture 1 : 28.5000 [deg]
+On Board Temperature 1 : 28.5000 [deg]
 3V3SYS Bus voltage     : 3256 [mv]
-On Board Tempareture 1 : 28.5000 [deg]
+On Board Temperature 1 : 28.5000 [deg]
 3V3SYS Bus voltage     : 3256 [mv]
-On Board Tempareture 1 : 28.5000 [deg]
+On Board Temperature 1 : 28.5000 [deg]
 3V3SYS Bus voltage     : 3256 [mv]
 ----
 
