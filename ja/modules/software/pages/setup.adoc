@@ -1,5 +1,7 @@
 = Setup the Development Environment
 
+WARNING: ソフトウェアセクションは、日本語版がありません。
+
 == Prepare the Software
 
 === Target Platform
