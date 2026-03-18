@@ -285,7 +285,7 @@ If you want to exit the tio console, first press `Ctrl + t`, followed by `q`.
 
 == I2C Driver sample
 
-Using the *I2C* driver for the SC-OBC Module A1, this application gets a temperature data from the sensor on the _Development Board_ and displays it on the console.
+Using the *I2C* driver for the SC-OBC Module A1, this application retrieves temperature data from the sensor on the _Development Board_ and displays it on the console.
 The sample application is available in https://github.com/spacecubics/scobc-a1-sample/tree/main/samples/i2c[I2C sample].
 
 === Explain the sample code
