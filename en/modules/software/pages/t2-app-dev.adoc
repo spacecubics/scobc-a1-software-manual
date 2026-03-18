@@ -172,9 +172,9 @@ _SCOBC_A1_TEMP_3_ +
  +
 *temp* Temperature [degree]|*0:* Success +
 *-ENODEV:* Wrong parameter +
-*--EAGAIN:* No updated sensor values
+*-EAGAIN:* No updated sensor values
 ||sc_bhm_get_xadc_temp|Get the FPGA DAI temperature sensor value|*temp:* Temperature [degree]|*0:* Success +
-*--EAGAIN:* No updated sensor values
+*-EAGAIN:* No updated sensor values
 ||sc_bhm_get_obc_cv|Get the on board Current/Voltage sensor value|*pos:* Position for sensor device +
 <Selectable parameter> +
 _SCOBC_A1_1V0_SHUNT_ +
@@ -191,7 +191,7 @@ _SCOBC_A1_3V3_IO_SHUNT_ +
 _SCOBC_A1_3V3_IO_BUS_ +
  +
 *cv:* Current sensor value [mA] / Voltage sensor value [mV] |*0:* Success +
-*--EAGAIN:* No updated sensor values
+*-EAGAIN:* No updated sensor values
 ||sc_bhm_get_xadc_cv|Get the FPGA voltage value|*pos:* Position for sensor device +
 <Selectable parameter> +
 _SCOBC_A1_XADC_VCCINT_ +
@@ -199,7 +199,7 @@ _SCOBC_A1_XADC_VCCAUX_ +
 _SCOBC_A1_XADC_VCCBRAM_ +
  +
 *cv:* FPGA Voltage value [mV] |*0:* Success +
-*--EAGAIN:* No updated sensor values
+*-EAGAIN:* No updated sensor values
 |=======================
 
 These APIs are provided as an out-of-tree driver and are available in https://github.com/spacecubics/scobc-a1-sample/tree/main/drivers/misc/sc_fpga[System Monitor Driver].
