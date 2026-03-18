@@ -390,7 +390,7 @@ There are several APIs available for retrieving a device structure, but in this 
 The label name specified in `DT_NODELABEL` must match the label defined in the DTS file.
 The I2C device connected to the temperature sensor on the Development Board is defined in https://github.com/spacecubics/scobc-a1-sample/blob/main/boards/shields/scobc_a1_dev/scobc_a1_dev.overlay[DTS overlay file for Development Board].
 
-Although tree FPGA I2C cores are available on the Development Board, the temperature sensor is connected to `i2c0`.
+Although three FPGA I2C cores are available on the Development Board, the temperature sensor is connected to `i2c0`.
 
 [source, c]
 ----
