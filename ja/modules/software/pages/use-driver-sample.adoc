@@ -21,7 +21,7 @@ The sample application is available in https://github.com/spacecubics/scobc-a1-s
 The directory name and structure for the sample application can be chosen freely. +
 In this example, we use the directory name `samples/blinky`.
 
-==== CMakefile.txt
+==== CMakeLists.txt
 
 A `CMakeLists.txt` file must be placed directly under the application directory.
 
@@ -295,7 +295,7 @@ The sample application is available in https://github.com/spacecubics/scobc-a1-s
 The directory name and structure for the sample application can be chosen freely. +
 In this example, we use the directory name `samples/i2c`.
 
-==== CMakefile.txt
+==== CMakeLists.txt
 
 A `CMakeLists.txt` file must be placed directly under the application directory.
 
