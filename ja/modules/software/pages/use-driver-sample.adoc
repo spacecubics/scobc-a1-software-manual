@@ -109,7 +109,7 @@ end:
 ===== GPIO Device structure
 
 The SC-OBC Module A1 is equipped with AMD (formerly Xilinx)'s AXI GPIO IP core, which connects to 10 GPIOs. +
-The relationship between the GPIOs and the User IO pins is as follows, with `GPIO15` connected to the _LED11_on the Development Board.
+The relationship between the GPIOs and the User IO pins is as follows, with `GPIO15` connected to the _LED11_ on the Development Board.
 
 .GPIO pins List
 [options="header"]
