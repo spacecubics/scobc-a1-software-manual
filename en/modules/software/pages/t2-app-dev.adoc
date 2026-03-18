@@ -291,7 +291,7 @@ int main(void)
 			printf("Failed to get the 3V3SYS Bus voltage: %d\n", ret);
 			goto end;
 		}
-		printf("3V3SYS Bus voltage     : %d [mv]\n", bus);
+		printf("3V3SYS Bus voltage     : %d [mV]\n", bus);
 
 		k_sleep(K_SECONDS(1));
 	}
@@ -364,7 +364,7 @@ If you'd like to get other values, try changing the _SCOBC_A1_3V3_BUS_ to a diff
 			printf("Failed to get the 3V3SYS Bus voltage: %d\n", ret);
 			goto end;
 		}
-		printf("3V3SYS Bus voltage     : %d [mv]\n", bus);
+		printf("3V3SYS Bus voltage     : %d [mV]\n", bus);
 ----
 
 === Open console
@@ -406,11 +406,11 @@ Confirm that the temperature from the on board temperature sensor and the _3V3SY
 ----
 *** Booting Zephyr OS build 60e8eb54f7ae ***
 On Board Temperature 1 : 28.5000 [deg]
-3V3SYS Bus voltage     : 3256 [mv]
+3V3SYS Bus voltage     : 3256 [mV]
 On Board Temperature 1 : 28.5000 [deg]
-3V3SYS Bus voltage     : 3256 [mv]
+3V3SYS Bus voltage     : 3256 [mV]
 On Board Temperature 1 : 28.5000 [deg]
-3V3SYS Bus voltage     : 3256 [mv]
+3V3SYS Bus voltage     : 3256 [mV]
 ----
 
 If you want to exit the tio console, first press `Ctrl + t`, followed by `q`.
