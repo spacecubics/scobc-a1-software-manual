@@ -1,4 +1,5 @@
 = Try Sample Applications on SC-OBC Module A1
+
 Zephyr provides many so-called *sample applications*. The Zephyr documentation has a dedicated page called *Samples and Demos*. +
 In this section, we'll build a few samples from Zephyr and run them on your SC-OBC Module A1. +
 
