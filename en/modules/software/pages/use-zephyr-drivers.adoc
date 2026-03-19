@@ -174,10 +174,13 @@ Electrically, this means:
 Therefore, the LED is considered **active when the signal is HIGH**, which is why
 `GPIO_ACTIVE_HIGH` is used in the Device Tree configuration.
 
-The LED driving circuit can be found in the Development Board schematic
-(see the LED control circuit in the schematic document):
+The User LED driving circuit is something like this:
 
-* {scobc_a1_dev_schematic_url}[SC-MPN-0056B_Dev_Board_Schematic_Rev1.pdf]
+image::scobc-a1:software:user-led.webp[User LED Circuit]
+
+You can check the Development Board schematic at
+xref:dev-board:design-info.adoc[] (see the LED control circuit
+in the schematic document):
 
 This configuration allows Zephyr to interpret the GPIO value correctly, so that a logical `1`
 corresponds to the LED being ON and `0` corresponds to the LED being OFF.
