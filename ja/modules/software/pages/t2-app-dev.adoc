@@ -158,10 +158,10 @@ Currently, the following Zephyr driver APIs are provided for controlling the FPG
 [options="header"]
 |=======================
 |Function|API|Summary|Parameters|Returns
-|FPGA Watchdog|sc_kick_wdt_timer|Toggle the FPGA Watch Dog Timer||
+|FPGA Watchdog|sc_kick_wdt_timer|Toggle the FPGA Watchdog Timer||
 |SEM Controller|sc_sem_get_error_count|Get the SEM error count||Current SEM error count
 |Board Health Monitor (BHM)|sc_bhm_enable|Enable the monitoring by BHM +
-*NOTE:* Currently monitoring interval is fixed by 1 second||*0:* Success +
+*NOTE:* Currently monitoring interval is fixed at 1 second||*0:* Success +
 *-ETIMEDOUT:* Timeout for sensor device initializing
 ||sc_bhm_disable|Disable the monitoring by BHM||*0:* Success
 ||sc_bhm_get_obc_temp|Get the on board temperature sensor value|*pos:* Position for sensor device +
@@ -328,7 +328,7 @@ Enable the System Monitor by FPGA _BHM_. If a negative value is returned, sensor
 ===== Wait 1 second
 
 The current System Monitor driver API does not allow customization of the monitoring interval via BHM; +
-it is fixed at 1 second. Therefore, waits for 1 second until the first data collection is completed.
+it is fixed at 1 second. Therefore, wait for 1 second until the first data collection is completed.
 
 [source, c]
 ----
