@@ -239,7 +239,7 @@ if (led_state < 0) {
 
 === Open console
 
-Connect the cable between your SC-OBC Module A1 and your PC, then open the console on terminal:
+Connect the cable between your SC-OBC Module A1 and your PC, then open the console in a terminal:
 
 [source, console]
 ----
@@ -446,7 +446,7 @@ CAUTION: To access the temperature sensor on the Development Board, bit7 (SCL) a
 
 === Open console
 
-Connect the cable between your SC-OBC Module A1 and your PC, then open the console on terminal:
+Connect the cable between your SC-OBC Module A1 and your PC, then open the console in a terminal:
 
 [source, console]
 ----
