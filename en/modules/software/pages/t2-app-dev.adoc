@@ -170,7 +170,7 @@ _SCOBC_A1_TEMP_1_ +
 _SCOBC_A1_TEMP_2_ +
 _SCOBC_A1_TEMP_3_ +
  +
-*temp* Temperature [degree]|*0:* Success +
+*temp:* Temperature [degree]|*0:* Success +
 *-ENODEV:* Wrong parameter +
 *-EAGAIN:* No updated sensor values
 ||sc_bhm_get_xadc_temp|Get the FPGA DAI temperature sensor value|*temp:* Temperature [degree]|*0:* Success +
