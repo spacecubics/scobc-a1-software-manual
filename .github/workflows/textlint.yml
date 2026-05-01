@@ -1,0 +1,26 @@
+name: textlint
+
+on:
+  pull_request:
+  push:
+permissions:
+  contents: read
+
+jobs:
+  textlint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm update
+
+      - name: Run textlint
+        run: npx textlint "ja/**/*.adoc"
