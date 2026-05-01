@@ -27,20 +27,20 @@ The BHM allows automatic data acquisition from these sensors without requiring c
 
 === System Monitor driver
 
-Currently, the following Zephyr driver APIs are provided for controlling the FPGA's System Monitor.
+Currently, The following Zephyr driver APIs are provided for controlling the System Monitor in the FPGA.
 
 [[anchor-1]]
 .System Monitor Driver API List
 [options="header"]
 |=======================
 |Function|API|Summary|Parameters|Returns
-|FPGA Watchdog|sc_kick_wdt_timer|Toggle the FPGA Watchdog Timer||
-|SEM Controller|sc_sem_get_error_count|Get the SEM error count||Current SEM error count
-|Board Health Monitor (BHM)|sc_bhm_enable|Enable the monitoring by BHM +
+|FPGA Watchdog|`sc_kick_wdt_timer`|Toggle the FPGA Watchdog Timer||
+|SEM Controller|`sc_sem_get_error_count`|Get the SEM error count||Current SEM error count
+|Board Health Monitor (BHM)|`sc_bhm_enable`|Enable the monitoring by BHM +
 *NOTE:* Currently monitoring interval is fixed at 1 second||*0:* Success +
 *-ETIMEDOUT:* Timeout for sensor device initializing
-||sc_bhm_disable|Disable the monitoring by BHM||*0:* Success
-||sc_bhm_get_obc_temp|Get the on board temperature sensor value|*pos:* Position for sensor device +
+||`sc_bhm_disable`|Disable the monitoring by BHM||*0:* Success
+||`sc_bhm_get_obc_temp`|Get the on board temperature sensor value|*pos:* Position for sensor device +
 <Selectable parameter> +
 _SCOBC_A1_TEMP_1_ +
 _SCOBC_A1_TEMP_2_ +
@@ -49,9 +49,9 @@ _SCOBC_A1_TEMP_3_ +
 *temp:* Temperature [degree]|*0:* Success +
 *-ENODEV:* Wrong parameter +
 *-EAGAIN:* No updated sensor values
-||sc_bhm_get_xadc_temp|Get the FPGA die temperature sensor value|*temp:* Temperature [degree]|*0:* Success +
+||`sc_bhm_get_xadc_temp`|Get the FPGA die temperature sensor value|*temp:* Temperature [degree]|*0:* Success +
 *-EAGAIN:* No updated sensor values
-||sc_bhm_get_obc_cv|Get the on board Current/Voltage sensor value|*pos:* Position for sensor device +
+||`sc_bhm_get_obc_cv`|Get the on board Current/Voltage sensor value|*pos:* Position for sensor device +
 <Selectable parameter> +
 _SCOBC_A1_1V0_SHUNT_ +
 _SCOBC_A1_1V0_BUS_ +
@@ -68,7 +68,7 @@ _SCOBC_A1_3V3_IO_BUS_ +
  +
 *cv:* Current sensor value [mA] / Voltage sensor value [mV] |*0:* Success +
 *-EAGAIN:* No updated sensor values
-||sc_bhm_get_xadc_cv|Get the FPGA voltage value|*pos:* Position for sensor device +
+||`sc_bhm_get_xadc_cv`|Get the FPGA voltage value|*pos:* Position for sensor device +
 <Selectable parameter> +
 _SCOBC_A1_XADC_VCCINT_ +
 _SCOBC_A1_XADC_VCCAUX_ +
@@ -110,13 +110,13 @@ target_sources(app PRIVATE src/main.c)
 
 Here, the parts that need to be modified for each application are explained.
 
- * *project*: Specify the desired project name
- * *target_sources*: Specify the source code file(s)
+ * `project`: Specify the desired project name
+ * `target_sources`: Specify the source code files
 
 === prj.conf
 
 Additional Kconfig parameters required for running the application can be specified.
-In this sample, to display temperature data of type float using printf, it is necessary to enable `CONFIG_PICOLIBC_IO_FLOAT`.
+In this sample, to display temperature data of type float using `printf`, it is necessary to enable `CONFIG_PICOLIBC_IO_FLOAT`.
 For more information about `CONFIG_PICOLIBC_IO_FLOAT`, refer to {zephyr-kconfig-picolibc-float}[CONFIG_PICOLIBC_IO_FLOAT].
 
 [source]
@@ -289,4 +289,4 @@ On Board Temperature 1 : 28.5000 [deg]
 3V3SYS Bus voltage     : 3256 [mV]
 ----
 
-If you want to exit the tio console, first press `Ctrl + t`, followed by `q`.
+If you want to exit the `tio` console, first press `Ctrl + t`, followed by `q`.

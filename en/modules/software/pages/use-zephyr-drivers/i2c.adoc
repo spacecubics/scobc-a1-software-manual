@@ -31,14 +31,14 @@ target_sources(app PRIVATE src/main.c)
 
 Here, the parts that need to be modified for each application are explained.
 
- * *project*: Specify the desired project name
- * *target_sources*: Specify the source code file(s)
+ * `project`: Specify the desired project name
+ * `target_sources`: Specify the source code files
 
 === prj.conf
 
 Additional Kconfig parameters required for running the application can be specified.
 As this example uses I2C, it is necessary to set `CONFIG_I2C=y`.
-And, to display temperature data of type float using printf, it is necessary to enable `CONFIG_PICOLIBC_IO_FLOAT`.
+And, to display temperature data of type float using `printf`, it is necessary to enable `CONFIG_PICOLIBC_IO_FLOAT`.
 For more information about `CONFIG_PICOLIBC_IO_FLOAT`, refer to {zephyr-kconfig-picolibc-float}[CONFIG_PICOLIBC_IO_FLOAT].
 
 [source]
@@ -207,4 +207,4 @@ Temperature: 31.5000 [deg]
 ----
 
 
-If you want to exit the tio console, first press `Ctrl + t`, followed by `q`.
+If you want to exit the `tio` console, first press `Ctrl + t`, followed by `q`.

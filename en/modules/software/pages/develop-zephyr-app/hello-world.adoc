@@ -31,8 +31,8 @@ target_sources(app PRIVATE src/main.c)
 
 Here, the parts that need to be modified for each application are explained.
 
- * *project*: Specify the desired project name
- * *target_sources*: Specify the source code file(s)
+ * `project`: Specify the desired project name
+ * `target_sources`: Specify the source code files
 
 === prj.conf
 
@@ -109,4 +109,4 @@ After power-cycling the SC-OBC Module A1, you should see the "Hello World" strin
 Hello World! scobc_a1 Rev 2.0.0
 ----
 
-If you want to exit the tio console, first press `Ctrl + t`, followed by `q`.
+If you want to exit the `tio` console, first press `Ctrl + t`, followed by `q`.
