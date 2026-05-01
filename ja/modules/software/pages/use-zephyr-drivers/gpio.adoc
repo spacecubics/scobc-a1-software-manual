@@ -119,7 +119,8 @@ GPIO と User IO ピンの対応は以下の通りで、`GPIO15` は Development
 |=======================
 
 {github-a1-sample-dev-board-overlay}[Development Board 用 DTS オーバーレイファイル] を見ると、GPIO IP コアの `GPIO15` がデバイス名 `user_led_0` として定義されていることが分かります。
-さらに、Zephyr の blinky サンプルで使われる `led0` が alias として割り当てられています。ただし、この alias は必須ではありません。
+さらに、Zephyr の blinky サンプルで使われる `led0` が alias として割り当てられています。
+ただし、alias の指定は任意です。
 
 [source, dts]
 ----
