@@ -12,7 +12,7 @@ FPGA Watchdog::
 
 SC-OBC Module A1 のシステムは *TRCH* (Timing, Reset, Config & Health Controller) によって監視されており、FPGA は watchdog 信号を介して内部状態を TRCH に報告します。
 
-NOTE: TRCH による監視はデフォルトでは無効なので、FPGA Watchdog 機能の利用は必須ではありません。
+NOTE: TRCH による監視はデフォルトでは無効です。FPGA Watchdog 機能は任意で利用できます。
 
 SEM Controller::
 
@@ -23,7 +23,7 @@ Board Health Monitor (BHM)::
 
 *Board Health Monitor (BHM)* は、SC-OBC Module A1 に搭載されたセンサのデータを容易に取得できる機能です。
 OBC モジュールには、2 個の電流 / 電圧モニタと 3 個の温度センサが搭載されています。
-BHM を使うと、ソフトウェアで複雑な *I2C* 操作を行わなくても、これらのセンサのデータを自動取得できます。
+BHM を使うと、ソフトウェアで複雑な *I2C* 処理を実装しなくても、これらのセンサのデータを自動取得できます。
 
 === System Monitor ドライバ
 
