@@ -1,2 +1,32 @@
-OBC
+# General technical terms
+hardcoded
+reusability
+datasheet
+
+# Development environments and tools
+venv
+udev
+Kconfig
+
+# Software and APIs
+APIs
+Config
+
+# Hardware and embedded systems
+CPU
+CPUs
+FPGA
+FPGAs
 GPIO
+GPIOs
+OBC
+
+# Products and vendor-specific names
+PICkit
+VMware
+
+# Example names and sample applications
+Blinky
+
+# Abbreviations
+cv

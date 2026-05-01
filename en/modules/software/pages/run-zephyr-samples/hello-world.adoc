@@ -34,4 +34,4 @@ west flash
 
 == Confirm
 After power-cycle the SC-OBC Module A1, you should see the Hello World string on your serial console.
-If you want to exit the tio console, first press `Ctrl + t`, followed by `q`.
+If you want to exit the `tio` console, first press `Ctrl + t`, followed by `q`.

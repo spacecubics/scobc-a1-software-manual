@@ -31,8 +31,8 @@ target_sources(app PRIVATE src/main.c)
 
 Here, the parts that need to be modified for each application are explained.
 
- * *project*: Specify the desired project name
- * *target_sources*: Specify the source code file(s)
+ * `project`: Specify the desired project name
+ * `target_sources`: Specify the source code files
 
 === prj.conf
 
@@ -119,7 +119,7 @@ The relationship between the GPIOs and the User IO pins is as follows, with `GPI
 |=======================
 
 Referring to the {github-a1-sample-dev-board-overlay}[DTS overlay file for Development Board], it can be seen that `GPIO15` of the GPIO IP core is defined with the device name `user_led_0`.
-Additionally, an `led0` is assigned using the alias, which is used by Zephyr's blinky sample. However, this alias is not mandatory.
+Additionally, an `led0` is assigned using the alias, which is used by Zephyr's Blinky sample. However, this alias is not mandatory.
 
 [source, dts]
 ----
@@ -275,4 +275,4 @@ LED state: OFF
 LED state: ON
 ----
 
-If you want to exit the tio console, first press `Ctrl + t`, followed by `q`.
+If you want to exit the `tio` console, first press `Ctrl + t`, followed by `q`.

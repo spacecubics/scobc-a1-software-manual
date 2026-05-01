@@ -13,8 +13,8 @@ This document targets *Ubuntu 24.04 x86_64* systems.
 You can use any of the following environments.
 
 * A PC with Ubuntu installed
-* A system container (e.g., Incus)
-* A virtual machine (e.g., QEMU, VirtualBox, VMware)
+* A system container, such as Incus
+* A virtual machine, such as QEMU, VirtualBox, or VMware
 * Windows Subsystem for Linux (WSL) (see TIP)
 
 For Windows or macOS users, refer to {zephyr-getting-started}[the
@@ -131,9 +131,9 @@ Install the packages required for flashing via *OpenOCD*.
 sudo apt install libftdi1 libgpiod2 libhidapi-hidraw0 libcapstone4
 ----
 
-=== Install the tio package
+=== Install the serial console package
 
-Although there are several tools available for working with a serial console, this document uses *tio*.
+Although there are several tools available for working with a serial console, this document uses *`tio`*.
 
 [source, console]
 ----
@@ -191,8 +191,8 @@ usbipd attach --wsl --busid 9-1
 
 After attaching, the serial ports appear in WSL as `/dev/ttyUSB*`.
 
-NOTE: We have confirmed that the `west flash` command takes longer to complete on WSL compared
-to native Linux. (65 KBytes writing: WSL - about 1 minute / Native Linux – about 20 seconds)
+NOTE: We have confirmed that the `west flash` command takes longer to complete on WSL than on native Linux.
+For example, writing 65 KB takes about 1 minute on WSL and about 20 seconds on native Linux.
 
 == Check the DIP Switch status
 
