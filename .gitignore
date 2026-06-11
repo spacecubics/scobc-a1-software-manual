@@ -1,8 +1,0 @@
-# nodejs
-package-lock.json
-node_modules
-
-# vale
-/.github/styles/*
-!/.github/styles/config
-!/.github/styles/config/**
